@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoFilterApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,176 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4q-68-Mki">
+                                <rect key="frame" x="280" y="540" width="41" height="30"/>
+                                <state key="normal" title="Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uhb-9i-llH"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qGp-Wm-kUb">
+                                <rect key="frame" x="16" y="690" width="568" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="1AO-y7-T9a"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i0H-Lh-GhC">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FILTER_CELL" id="12n-Pf-yPr" customClass="FilteredThumbnailPhotoCell" customModule="PhotoFilterApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mEP-Dr-diL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="mEP-Dr-diL" firstAttribute="leading" secondItem="12n-Pf-yPr" secondAttribute="leadingMargin" id="5IJ-ND-54r"/>
+                                            <constraint firstItem="mEP-Dr-diL" firstAttribute="top" secondItem="12n-Pf-yPr" secondAttribute="top" id="8B1-2Z-8xp"/>
+                                            <constraint firstAttribute="trailing" secondItem="mEP-Dr-diL" secondAttribute="trailing" id="Fss-S4-4oh"/>
+                                            <constraint firstItem="mEP-Dr-diL" firstAttribute="top" secondItem="12n-Pf-yPr" secondAttribute="topMargin" id="ZEk-y6-I1S"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="mEP-Dr-diL" secondAttribute="trailing" id="d4w-K1-dOm"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="mEP-Dr-diL" secondAttribute="bottom" id="n1g-zi-XSu"/>
+                                            <constraint firstItem="mEP-Dr-diL" firstAttribute="leading" secondItem="12n-Pf-yPr" secondAttribute="leading" id="rAs-9P-0Mj"/>
+                                            <constraint firstAttribute="bottom" secondItem="mEP-Dr-diL" secondAttribute="bottom" id="y7n-NB-Bzk"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="5IJ-ND-54r"/>
+                                                <exclude reference="ZEk-y6-I1S"/>
+                                                <exclude reference="d4w-K1-dOm"/>
+                                                <exclude reference="n1g-zi-XSu"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="thumbnailImageView" destination="mEP-Dr-diL" id="rQM-rc-02k"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-tH-TDt">
+                                <rect key="frame" x="46" y="50" width="508" height="460"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="qGp-Wm-kUb" secondAttribute="bottom" constant="-200" id="8Ks-gn-duj"/>
+                            <constraint firstAttribute="centerX" secondItem="H4q-68-Mki" secondAttribute="centerX" id="ETG-vc-0ce"/>
+                            <constraint firstItem="qGp-Wm-kUb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Pcv-0Z-GyQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H4q-68-Mki" secondAttribute="bottom" constant="30" id="U1A-6n-VqE"/>
+                            <constraint firstItem="cR4-tH-TDt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="aJd-Hb-MF1"/>
+                            <constraint firstItem="H4q-68-Mki" firstAttribute="top" secondItem="cR4-tH-TDt" secondAttribute="bottom" constant="30" id="gh0-yz-qqv"/>
+                            <constraint firstItem="cR4-tH-TDt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="jud-BZ-NDh"/>
+                            <constraint firstItem="qGp-Wm-kUb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kZZ-wB-Myh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cR4-tH-TDt" secondAttribute="trailing" constant="30" id="mJN-nt-Oj7"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionViewBottomConstraint" destination="8Ks-gn-duj" id="Fxa-xK-uNM"/>
+                        <outlet property="imageViewBottomConstraint" destination="gh0-yz-qqv" id="IsT-A8-1i6"/>
+                        <outlet property="imageViewLeadConstraint" destination="jud-BZ-NDh" id="2ru-fU-cwM"/>
+                        <outlet property="imageViewTrailingConstraint" destination="mJN-nt-Oj7" id="pbS-tV-2Wa"/>
+                        <outlet property="photoImageView" destination="cR4-tH-TDt" id="Iy0-Ln-PtM"/>
+                        <outlet property="thumbnailCollectionView" destination="qGp-Wm-kUb" id="4gG-5t-cm9"/>
+                        <segue destination="ZYu-TC-USD" kind="presentation" identifier="SHOW_GALLERY" id="kV0-gI-MdS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-121" y="207"/>
+        </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="GOb-M1-Ega">
+            <objects>
+                <viewController id="ZYu-TC-USD" customClass="GalleryViewController" customModule="PhotoFilterApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qk1-bT-2g4"/>
+                        <viewControllerLayoutGuide type="bottom" id="n7K-zY-neW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9km-MR-p4c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="s6Y-iu-8Tt">
+                                <rect key="frame" x="16" y="30" width="568" height="540"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qfa-18-vJm">
+                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GALLERY_CELL" id="PUF-Ec-l9Z" customClass="GalleryCell" customModule="PhotoFilterApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4CJ-10-Eb3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <color key="backgroundColor" red="1" green="0.29599234320000001" blue="0.2238535166" alpha="1" colorSpace="calibratedRGB"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="4CJ-10-Eb3" secondAttribute="bottom" id="SFy-Oa-6B5"/>
+                                            <constraint firstItem="4CJ-10-Eb3" firstAttribute="leading" secondItem="PUF-Ec-l9Z" secondAttribute="leading" id="SSa-Ih-qam"/>
+                                            <constraint firstAttribute="trailing" secondItem="4CJ-10-Eb3" secondAttribute="trailing" id="d1L-E3-87s"/>
+                                            <constraint firstItem="4CJ-10-Eb3" firstAttribute="top" secondItem="PUF-Ec-l9Z" secondAttribute="top" id="jad-Sk-YBg"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="4CJ-10-Eb3" id="Oaa-6B-2KW"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HEADER_VIEW" id="bRZ-R5-LCM" customClass="CollectionHeaderView" customModule="PhotoFilterApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HiF-36-hQ8">
+                                            <rect key="frame" x="0.0" y="16" width="568" height="34"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <connections>
+                                        <outlet property="view" destination="HiF-36-hQ8" id="aEt-po-APc"/>
+                                    </connections>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FOOTER_VEW" id="uKP-JZ-OQJ" customClass="CollectionFooterView" customModule="PhotoFilterApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="220" width="568" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="s6Y-iu-8Tt" secondAttribute="trailing" id="29f-WP-Z4a"/>
+                            <constraint firstItem="s6Y-iu-8Tt" firstAttribute="top" secondItem="9km-MR-p4c" secondAttribute="topMargin" constant="30" id="VG9-mp-7Ix"/>
+                            <constraint firstItem="s6Y-iu-8Tt" firstAttribute="leading" secondItem="9km-MR-p4c" secondAttribute="leadingMargin" id="bMK-nH-O5s"/>
+                            <constraint firstItem="n7K-zY-neW" firstAttribute="top" secondItem="s6Y-iu-8Tt" secondAttribute="bottom" constant="30" id="pGe-yf-MfN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="s6Y-iu-8Tt" id="CXP-Qb-oTq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4z4-oF-P1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="196"/>
         </scene>
     </scenes>
 </document>
