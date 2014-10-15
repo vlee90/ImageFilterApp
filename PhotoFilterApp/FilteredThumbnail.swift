@@ -24,5 +24,29 @@ class FilteredThumbnail {
         self.gpuContext = context
     }
     
-    
+    func generateThumbnails (completionHandler: (image: UIImage) -> Void) {
+        self.imageQueue.addOperationWithBlock { () -> Void in
+                //  Set up Filter with CIImage.
+            var image = CIImage(image: self.originalImage)
+                    //  Initialize CIFilter with specified name.
+            var imageFilter = CIFilter(name: self.filterName)
+                    //  Sets Filter to default input values
+            imageFilter.setDefaults()
+                    //  Alters Filter's effect with kCIInputImageKey
+            imageFilter.setValue(image, forKey: kCIInputImageKey)
+            
+                //  Generate the filtered image
+            var result = imageFilter.valueForKey(kCIOutputImageKey) as CIImage
+                    //  Sets up rectangular shape for image to be formed in.
+            var extent = result.extent()
+                    //  gpuContext finally creates the filtered Image.
+            var imageRef = self.gpuContext.createCGImage(result, fromRect: extent)
+            self.filter = imageFilter
+                    //  Convert CGImage too UIImage
+            self.filteredImage = UIImage(CGImage: imageRef)
+            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                completionHandler(image: self.filteredImage!)
+            })
+        }
+    }
 }

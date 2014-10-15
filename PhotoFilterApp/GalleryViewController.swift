@@ -41,23 +41,6 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         self.galleryDelegate?.clickImage(image)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-//    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView? {
-//        if kind == UICollectionElementKindSectionHeader {
-//            var reuseableView = collectionView.dequeueReusableCellWithReuseIdentifier("HEADER_VEW", forIndexPath: indexPath) as CollectionHeaderView
-//            reuseableView.backgroundColor = UIColor.redColor()
-//            return reuseableView
-//        }
-//        else if kind == UICollectionElementKindSectionFooter {
-//            var reuseableView = collectionView.dequeueReusableCellWithReuseIdentifier("FOOTER_VIEW", forIndexPath: indexPath) as CollectionFooterView
-//            reuseableView.backgroundColor = UIColor.blueColor()
-//            return reuseableView
-//        }
-//        else {
-//            return nil
-//        }
-//    }
 
 
 //  MARK: Helpers
