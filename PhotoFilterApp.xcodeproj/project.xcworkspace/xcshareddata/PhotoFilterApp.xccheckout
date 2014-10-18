@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>1E0AB4C9-A816-4657-9CCE-94E0293051DC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PhotoFilterApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>45900F6CF4CEAA219D89C3C453DB594CB04EC039</key>
+		<string>github.com:vlee90/ImageFilterApp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PhotoFilterApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>45900F6CF4CEAA219D89C3C453DB594CB04EC039</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:vlee90/ImageFilterApp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>45900F6CF4CEAA219D89C3C453DB594CB04EC039</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>45900F6CF4CEAA219D89C3C453DB594CB04EC039</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PhotoFilterApp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
