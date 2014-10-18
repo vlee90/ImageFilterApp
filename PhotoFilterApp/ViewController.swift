@@ -211,8 +211,8 @@ class ViewController: UIViewController, ImageDelegate, UIImagePickerControllerDe
         var photoEffectMono = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
         photoEffectMono.name = "CIPhotoEffectMono"
         
-        var twistDistortion = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
-        twistDistortion.name = "CITwistDistortion"
+        var twirlDistortion = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+        twirlDistortion.name = "CITwirlDistortion"
         
         
         var error: NSError?
@@ -294,7 +294,6 @@ class ViewController: UIViewController, ImageDelegate, UIImagePickerControllerDe
         var newThumbnailArray = [FilteredThumbnail]()
             //  Loop over the filters in the filerArray and create instances of them with different filters
         for filter in self.filterArray {
-            let currentFilter = filter
             var filteredThumbnail = FilteredThumbnail(name: filter.name, thumbnail: self.originalImageThumbnail!, queue: self.imageQueue, context: self.gpuContext!)
             newThumbnailArray.append(filteredThumbnail)
         }

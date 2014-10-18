@@ -35,7 +35,12 @@ class FilteredThumbnail {
             imageFilter.setDefaults()
                     //  Alters Filter's effect with kCIInputImageKey
             imageFilter.setValue(image, forKey: kCIInputImageKey)
-            
+            if imageFilter.name() == "CITwirlDistortion" {
+                imageFilter.setValue(CIVector(x: 50, y: 50), forKey: "inputCenter")
+                imageFilter.setValue(NSNumber(int: 40), forKey: "inputRadius")
+                imageFilter.attributes()
+            }
+            println(imageFilter.name())
                 //  Generate the filtered image
             var result = imageFilter.valueForKey(kCIOutputImageKey) as CIImage
                     //  Sets up rectangular shape for image to be formed in.
