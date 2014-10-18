@@ -12,5 +12,4 @@ import CoreData
 class Filter: NSManagedObject {
 
     @NSManaged var name: String
-
 }

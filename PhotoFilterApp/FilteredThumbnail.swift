@@ -17,6 +17,7 @@ class FilteredThumbnail {
     var gpuContext: CIContext
     var filterName: String
     
+    
     init(name: String, thumbnail: UIImage, queue: NSOperationQueue, context: CIContext) {
         self.filterName = name
         self.originalImage = thumbnail

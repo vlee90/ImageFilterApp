@@ -12,9 +12,10 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 //  MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     var imageArray = [UIImage]()
-    var galleryDelegate: GalleryDelegate?
-    var flowLayout = UICollectionViewFlowLayout()
+    var imageDelegate: ImageDelegate?
+    var flowLayout: UICollectionViewFlowLayout!
     var filteredThumbnailArray = [FilteredThumbnail]()
+    var originalThumbnailSize: CGSize!
     
 //  MARK: Setup
     override func viewDidLoad() {
@@ -22,6 +23,12 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.delegate = self
         collectionView.dataSource = self
         loadPhotoArray(8)
+        
+        
+        self.flowLayout = self.collectionView.collectionViewLayout as UICollectionViewFlowLayout
+        var pinchGestureRecogniser = UIPinchGestureRecognizer(target: self, action: "pinchAction:")
+        self.collectionView.addGestureRecognizer(pinchGestureRecogniser)
+        self.originalThumbnailSize = self.flowLayout.itemSize
     }
 
 //  MARK: Collection View
@@ -38,7 +45,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let image = self.imageArray[indexPath.row]
-        self.galleryDelegate?.clickImage(image)
+        self.imageDelegate?.clickImage(image)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -47,6 +54,15 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     func loadPhotoArray(numberOfPhotos: Int) {
         for var i = 1; i <= numberOfPhotos; i++ {
             self.imageArray.append(UIImage(named: "photo\(i)"))
+        }
+    }
+    
+    func pinchAction(pinch: UIPinchGestureRecognizer) {
+        if pinch.state == UIGestureRecognizerState.Changed || pinch.state == UIGestureRecognizerState.Began {
+            if pinch.scale <= 2 && pinch.scale >= 0.2 {
+                self.flowLayout.itemSize.width = self.originalThumbnailSize!.width * pinch.scale
+                self.flowLayout.itemSize.height = self.originalThumbnailSize!.height * pinch.scale
+            }
         }
     }
 }

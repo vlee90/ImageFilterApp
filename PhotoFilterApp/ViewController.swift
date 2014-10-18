@@ -9,8 +9,10 @@
 import UIKit
 import CoreData
 import OpenGLES
+import Social
+import Photos
 
-class ViewController: UIViewController, GalleryDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class ViewController: UIViewController, ImageDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
 //  MARK: Properties:
     @IBOutlet weak var photoImageView: UIImageView!
@@ -42,20 +44,32 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.managedObjectContext = appDelegateObject.managedObjectContext
         self.fetchFilters()
         
-        
         // CollectionView Setup
         self.thumbnailCollectionView.dataSource = self
         var options = [kCIContextOutputColorSpace : NSNull()]
         var myEAGLContext = EAGLContext(API: EAGLRenderingAPI.OpenGLES2)
         self.gpuContext = CIContext(EAGLContext: myEAGLContext, options: options)
         self.thumbnailCollectionView.delegate = self
+        
+//        self.photoImageView.layer.borderColor = UIColor.blackColor().CGColor
+//        self.photoImageView.layer.masksToBounds = true
+//        self.photoImageView.layer.borderWidth = 2
+//        self.photoImageView.layer.cornerRadius = 50
+        
     }
 
 //  MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "SHOW_GALLERY" {
             let destinationVC = segue.destinationViewController as GalleryViewController
-            destinationVC.galleryDelegate = self
+            destinationVC.imageDelegate = self
+        }
+        else if segue.identifier == "SHOW_PHOTOFRAMEWORK" {
+            let destinationVC = segue.destinationViewController as PhotoFrameworkViewController
+            destinationVC.imageDelegate = self
+        }
+        else if segue.identifier == "SHOW_AFFOUNDATION" {
+            let destinationVC = segue.destinationViewController as AFFoundationViewController
         }
     }
 
@@ -80,22 +94,56 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
             }
         }
         
+        let takePictureAction = UIAlertAction(title: "Take a picture", style: UIAlertActionStyle.Default) { (action) -> Void in
+            self.performSegueWithIdentifier("SHOW_AFFOUNDATION", sender: self)
+        }
+        
         let filterAction = UIAlertAction(title: "Filter", style: UIAlertActionStyle.Default) { (action) -> Void in
             self.enterFilterMode()
             self.resetFilterThumbnails()
             
         }
         
+        let photoFrameworkAction = UIAlertAction(title: "Photo FrameWork", style: UIAlertActionStyle.Default) { (action) -> Void in
+            self.performSegueWithIdentifier("SHOW_PHOTOFRAMEWORK", sender: self)
+        }
+    
+        let tweetPhotoAction = UIAlertAction(title: "Tweet Photo", style: UIAlertActionStyle.Default) { (action) -> Void in
+            self.tweet(nil, image: self.photoImageView.image, url: NSURL(string: "google.com"))
+        }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil) 
 
         alertController.addAction(galleryAction)
         alertController.addAction(cameraAction)
+        alertController.addAction(takePictureAction)
         alertController.addAction(cancelAction)
         alertController.addAction(filterAction)
+        alertController.addAction(photoFrameworkAction)
+        if self.photoImageView.image != nil {
+            alertController.addAction(tweetPhotoAction)
+        }
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func savePhotoButtonPressed(sender: UIButton) {
+        if self.photoImageView.image != nil {
+            let alertController = UIAlertController(title: "Attention", message: "Your image has saved.", preferredStyle: UIAlertControllerStyle.Alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(dismissAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+                let item = PHAssetChangeRequest.creationRequestForAssetFromImage(self.photoImageView.image)
+            }, completionHandler: nil)
+        }
+        else {
+            let alertController = UIAlertController(title: "Warning", message: "Need a photo to save", preferredStyle: UIAlertControllerStyle.Alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Cancel, handler: nil)
+            alertController.addAction(dismissAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
 //  MARK: CollectionView
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.filteredThumbnailArray.count
@@ -122,7 +170,6 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         var selectedThumbnail = self.filteredThumbnailArray[indexPath.row]
         let selectedFilter = selectedThumbnail.filterName
         if originalImageBool == true {
-            self.originalImage = selectedThumbnail.originalImage
             self.photoImageView.image = selectedThumbnail.filteredImage
             self.originalImageBool = false
         }
@@ -163,6 +210,10 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         
         var photoEffectMono = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
         photoEffectMono.name = "CIPhotoEffectMono"
+        
+        var twistDistortion = NSEntityDescription.insertNewObjectForEntityForName("Filter", inManagedObjectContext: self.managedObjectContext) as Filter
+        twistDistortion.name = "CITwistDistortion"
+        
         
         var error: NSError?
         self.managedObjectContext.save(&error)
@@ -251,8 +302,32 @@ class ViewController: UIViewController, GalleryDelegate, UIImagePickerController
         self.thumbnailCollectionView.reloadData()
     }
     
-        
-//  MARK: GalleryDelegateAction
+    // From https://teamtreehouse.com/forum/swift-social-framework
+    func tweet(message: String?, image: UIImage?, url: NSURL?) {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            let controller = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            controller.setInitialText(message)
+            controller.addImage(image)
+            controller.addURL(url)
+            controller.completionHandler = { (result: SLComposeViewControllerResult) -> Void in
+                switch result {
+                case SLComposeViewControllerResult.Cancelled:
+                    println("Result: Cancelled")
+                case SLComposeViewControllerResult.Done:
+                    println("Result: Done")
+                    //more code
+                }
+            }
+            self.presentViewController(controller, animated: true, completion: { () -> Void in
+                //do this when viewcontroller is present
+            })
+        }
+        else {
+            println("Twitter is not availible")
+        }
+    }
+    
+//  MARK: ImageDelegateAction
     func clickImage(image: UIImage) {
         self.photoImageView.image = image
         self.originalImage = image

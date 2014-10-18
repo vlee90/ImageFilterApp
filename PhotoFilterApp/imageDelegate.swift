@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-protocol GalleryDelegate {
+protocol ImageDelegate {
     func clickImage(image: UIImage)
 }
