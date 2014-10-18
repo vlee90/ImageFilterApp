@@ -71,6 +71,15 @@
                                     <action selector="photoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QPo-nn-gWP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCj-1B-SOI">
+                                <rect key="frame" x="494" y="540" width="80" height="30"/>
+                                <state key="normal" title="Save Photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="klt-ML-9Mt"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-tH-TDt">
                                 <rect key="frame" x="46" y="94" width="508" height="450"/>
                                 <constraints>
@@ -126,15 +135,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCj-1B-SOI">
-                                <rect key="frame" x="494" y="540" width="80" height="30"/>
-                                <state key="normal" title="Save Photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="savePhotoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="klt-ML-9Mt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
