@@ -20,8 +20,9 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 //  MARK: Setup
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.registerNib(UINib(nibName: "ThumbnailCell", bundle: NSBundle.mainBundle()), forCellWithReuseIdentifier: "THUMBNAIL_CELL")
         loadPhotoArray(8)
         
         
@@ -38,8 +39,8 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GALLERY_CELL", forIndexPath: indexPath) as GalleryCell
-        cell.cellImageView.image = self.imageArray[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("THUMBNAIL_CELL", forIndexPath: indexPath) as ThumbnailCell
+        cell.imageView.image = self.imageArray[indexPath.row]
         return cell
     }
     

@@ -81,7 +81,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cR4-tH-TDt">
-                                <rect key="frame" x="46" y="94" width="508" height="450"/>
+                                <rect key="frame" x="26" y="74" width="548" height="450"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="450" id="bHp-hX-965"/>
                                 </constraints>
@@ -143,11 +143,11 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rCj-1B-SOI" secondAttribute="bottom" constant="30" id="90c-Sh-tZO"/>
                             <constraint firstItem="qGp-Wm-kUb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Pcv-0Z-GyQ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H4q-68-Mki" secondAttribute="bottom" constant="30" id="U1A-6n-VqE"/>
-                            <constraint firstItem="cR4-tH-TDt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="aJd-Hb-MF1"/>
+                            <constraint firstItem="cR4-tH-TDt" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="aJd-Hb-MF1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rCj-1B-SOI" secondAttribute="trailing" constant="10" id="cFJ-OW-rw2"/>
-                            <constraint firstItem="cR4-tH-TDt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="jud-BZ-NDh"/>
+                            <constraint firstItem="cR4-tH-TDt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="jud-BZ-NDh"/>
                             <constraint firstItem="qGp-Wm-kUb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kZZ-wB-Myh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="cR4-tH-TDt" secondAttribute="trailing" constant="30" id="mJN-nt-Oj7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cR4-tH-TDt" secondAttribute="trailing" constant="10" id="mJN-nt-Oj7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XA5-yB-iio"/>
