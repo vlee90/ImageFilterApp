@@ -51,10 +51,10 @@ class ViewController: UIViewController, ImageDelegate, UIImagePickerControllerDe
         self.gpuContext = CIContext(EAGLContext: myEAGLContext, options: options)
         self.thumbnailCollectionView.delegate = self
         
-//        self.photoImageView.layer.borderColor = UIColor.blackColor().CGColor
-//        self.photoImageView.layer.masksToBounds = true
-//        self.photoImageView.layer.borderWidth = 2
-//        self.photoImageView.layer.cornerRadius = 50
+        self.photoImageView.layer.borderColor = UIColor.blackColor().CGColor
+        self.photoImageView.layer.masksToBounds = true
+        self.photoImageView.layer.borderWidth = 2
+        self.photoImageView.layer.cornerRadius = 50
         
     }
 
